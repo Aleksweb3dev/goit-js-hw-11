@@ -1,0 +1,12 @@
+import{a as l,S as c,i as a}from"./assets/vendor-vwbIfzmB.js";(function(){const o=document.createElement("link").relList;if(o&&o.supports&&o.supports("modulepreload"))return;for(const e of document.querySelectorAll('link[rel="modulepreload"]'))s(e);new MutationObserver(e=>{for(const t of e)if(t.type==="childList")for(const n of t.addedNodes)n.tagName==="LINK"&&n.rel==="modulepreload"&&s(n)}).observe(document,{childList:!0,subtree:!0});function i(e){const t={};return e.integrity&&(t.integrity=e.integrity),e.referrerPolicy&&(t.referrerPolicy=e.referrerPolicy),e.crossOrigin==="use-credentials"?t.credentials="include":e.crossOrigin==="anonymous"?t.credentials="omit":t.credentials="same-origin",t}function s(e){if(e.ep)return;e.ep=!0;const t=i(e);fetch(e.href,t)}})();const u="https://pixabay.com/api/";function d(r=""){const o={key:"50231364-89a6adaa041ec148f09dc01d0",q:r,image_type:"photo",orientation:"horizontal",safesearch:!0};return l.get(u,{params:o}).then(i=>i.data)}let f=new c(".gallery a");function m(r){const o=r.map(s=>`<li class="gallery-item">
+          <a href="${s.largeImageURL}">
+            <img class="gallery-image" src="${s.webformatURL}" alt="${s.tags}" width="360" height="200"/>
+          </a>
+          <div class="info">
+            <p><b>Likes</b> ${s.likes}</p>
+            <p><b>Views</b> ${s.views}</p>
+            <p><b>Comments</b> ${s.comments}</p>
+            <p><b>Downloads</b> ${s.downloads}</p>
+          </div>
+        </li>`).join("");document.querySelector(".gallery").insertAdjacentHTML("beforeend",o),f.refresh()}function y(){const r=document.querySelector(".gallery");r.innerHTML=""}function g(){document.querySelector(".loader").classList.remove("is-hidden")}function p(){document.querySelector(".loader").classList.add("is-hidden")}const h=document.querySelector(".form");h.addEventListener("submit",r=>{r.preventDefault();const o=r.target.elements["search-text"].value.trim();if(!o){a.error({title:"Sorry",message:"There are no images matching your search query. Please try again!",position:"topRight"});return}g(),y(),d(o).then(i=>{if(i.hits.length===0){a.error({title:"Sorry",message:"There are no images matching your search query. Please try again!",position:"topRight"});return}m(i.hits)}).catch(i=>{a.error({title:"Error",message:"Something went wrong. Please try again.",position:"topRight"}),console.log(i)}).finally(()=>{p()})});
+//# sourceMappingURL=index.js.map
