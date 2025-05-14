@@ -17,7 +17,7 @@ loadMoreLoader.classList.add('is-hidden');
 
 let currentPage = 1;
 let currentQuery = '';
-const perPage = 20;
+const perPage = 15;
 
 form.addEventListener('submit', async event => {
   event.preventDefault();
@@ -58,6 +58,13 @@ form.addEventListener('submit', async event => {
 
     if (data.totalHits > currentPage * perPage) {
       loadMoreBtn.classList.remove('is-hidden');
+    } else {
+      loadMoreBtn.classList.add('is-hidden');
+      iziToast.info({
+        title: 'Info',
+        message: "We're sorry, but you've reached the end of search results.",
+        position: 'topRight',
+      });
     }
   } catch (error) {
     iziToast.error({
@@ -81,8 +88,22 @@ loadMoreBtn.addEventListener('click', async () => {
 
     createGallery(data.hits);
 
+    const { height: cardHeight } = document
+      .querySelector('.gallery')
+      .firstElementChild.getBoundingClientRect();
+
+    window.scrollBy({
+      top: cardHeight * 2,
+      behavior: 'smooth',
+    });
+
     if (data.totalHits <= currentPage * perPage) {
       loadMoreBtn.classList.add('is-hidden');
+      iziToast.info({
+        title: 'Info',
+        message: "We're sorry, but you've reached the end of search results.",
+        position: 'topRight',
+      });
     }
   } catch (error) {
     iziToast.error({
