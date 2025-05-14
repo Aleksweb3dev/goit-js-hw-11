@@ -43,7 +43,6 @@ body {
   letter-spacing: 0.04em;
   color: #fff;
   background-color: #4e75ff;
-  color: white;
   border: none;
   padding: 8px 16px;
   border-radius: 4px;
@@ -105,4 +104,42 @@ body {
   margin: 0;
   display: flex;
   flex-direction: column;
+}
+
+.load-more {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+  letter-spacing: 0.04em;
+  color: #fff;
+  background-color: #4e75ff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 125px;
+  height: 40px;
+  margin: 20px auto;
+  display: block;
+}
+
+.load-more.is-hidden {
+  display: none;
+}
+
+.load-more:hover {
+  background-color: #6c8cff;
+}
+
+.load-more-loader {
+  display: block;
+  text-align: center;
+  margin-top: 10px;
+  color: #212121;
+  font-size: 14px;
+}
+
+.is-hidden {
+  display: none;
 }
